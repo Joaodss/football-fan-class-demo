@@ -1,0 +1,30 @@
+<h1>Fan lists</h1>
+
+<input type="text" placeholder="Fan Name" [(ngModel)]="fanName">
+<input type="number" min="0" placeholder="Fan Age" [(ngModel)]="fanAge">
+<input type="text" placeholder="Fan Country" [(ngModel)]="fanCountry">
+<input type="text" placeholder="Fan Picture (optional)"
+  [(ngModel)]="fanPictureUrl">
+
+<select [(ngModel)]="selectedTeam">
+  <option value="Madrid">Madrid FC</option>
+  <option value="Barcelona">Barcelona FC</option>
+</select>
+
+<button class="btn btn-primary" (click)="addNewFan()">Add Fan</button>
+
+<div class="container">
+  <div class="team">
+    <h2>Real Madrid</h2>
+    <app-fan-item *ngFor="let madridFan of realMadridFanList; let i=index"
+      [index]="i" [fan]="madridFan" (fanRemoved)="removeFan($event, 'Madrid')">
+    </app-fan-item>
+  </div>
+  <div class="team">
+    <h2>Barcelona</h2>
+    <app-fan-item *ngFor="let barcelonaFan of barcelonaFanList; let i=index"
+      [index]="i" [fan]="barcelonaFan"
+      (fanRemoved)="removeFan($event, 'Barcelona')">
+    </app-fan-item>
+  </div>
+</div>
